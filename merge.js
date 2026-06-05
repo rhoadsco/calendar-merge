@@ -88,7 +88,17 @@ function extractEvents(content) {
 
 // 🏷 Tag each event with team name
 function tagEvents(events, label) {
-  return events;
+  return events.map(event => {
+    // Only modify AppleRouth calendar
+    if (label === "Applerouth") {
+      return event.replace(
+        /SUMMARY:(.*)/,
+        `SUMMARY:Tutoring: $1`
+      );
+    }
+
+    return event;
+  });
 }
 
 (async () => {

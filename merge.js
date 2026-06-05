@@ -13,7 +13,7 @@ const urls = [
   },
   {
     name: "Google Calendar",
-    url: "https://calendar.google.com/calendar/ical/cosetterhoads9%40gmail.com/private/full.ics"
+    url: "https://calendar.google.com/calendar/ical/cosetterhoads9%40gmail.com/private-84dbb108f379694905f4b8df5c5c7416/basic.ics"
   },
 {
   name: "Runna",

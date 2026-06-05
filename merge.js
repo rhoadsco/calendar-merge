@@ -80,9 +80,7 @@ function extractEvents(content) {
 
 // 🏷 Tag each event with team name
 function tagEvents(events, label) {
-  return events.map(event => {
-    return event.replace(/SUMMARY:(.*)/, `SUMMARY:[${label}] $1`);
-  });
+  return events;
 }
 
 (async () => {

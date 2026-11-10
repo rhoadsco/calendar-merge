@@ -12,9 +12,23 @@ const urls = [
   { name: "Partiful", url: process.env.PARTIFUL_ICS_URL }
 ];
 
+function normalizeCalendarUrl(url) {
+  // Apple Calendar commonly copies public iCloud subscriptions as webcal://.
+  // webcal is a subscription-handler scheme, not an HTTP transport supported
+  // by Node's https client, so fetch the same published resource over HTTPS.
+  const trimmed = String(url || "").trim();
+  if (/^webcal:\/\//i.test(trimmed)) return trimmed.replace(/^webcal:/i, "https:");
+  if (/^webcals:\/\//i.test(trimmed)) return trimmed.replace(/^webcals:/i, "https:");
+  return trimmed;
+}
+
 function fetchICS(url, redirects = 5) {
   return new Promise((resolve, reject) => {
+    url = normalizeCalendarUrl(url);
     const parsed = new URL(url);
+    if (!["https:", "http:"].includes(parsed.protocol)) {
+      return reject(new Error(`Unsupported calendar URL protocol: ${parsed.protocol}`));
+    }
     const client = parsed.protocol === "https:" ? https : http;
     const req = client.get(url, {
       headers: {
@@ -249,4 +263,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { unfoldLines, parseCalendar, propertyValues, eventInfo, mergeEvents, dedupeTimezones };
+module.exports = { normalizeCalendarUrl, fetchICS, unfoldLines, parseCalendar, propertyValues, eventInfo, mergeEvents, dedupeTimezones };

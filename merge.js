@@ -8,8 +8,6 @@ const urls = [
   { name: "iCloud Calendar", url: process.env.ICLOUD_ICS_URL },
   { name: "Applerouth", url: process.env.APPLEROUTH_ICS_URL },
   { name: "Google Calendar", url: process.env.GOOGLE_ICS_URL },
-  { name: "Runna", url: process.env.RUNNA_ICS_URL },
-  { name: "Partiful", url: process.env.PARTIFUL_ICS_URL }
 ];
 
 function normalizeCalendarUrl(url) {

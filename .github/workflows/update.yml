@@ -15,8 +15,6 @@ jobs:
       ICLOUD_ICS_URL: ${{ secrets.ICLOUD_ICS_URL }}
       APPLEROUTH_ICS_URL: ${{ secrets.APPLEROUTH_ICS_URL }}
       GOOGLE_ICS_URL: ${{ secrets.GOOGLE_ICS_URL }}
-      RUNNA_ICS_URL: ${{ secrets.RUNNA_ICS_URL }}
-      PARTIFUL_ICS_URL: ${{ secrets.PARTIFUL_ICS_URL }}
 
     steps:
       - uses: actions/checkout@v4
